@@ -1,0 +1,54 @@
+Running OllamaLLM tests...
+Query: Hi ! I'm Patrick
+================================ Human Message =================================
+
+<think>
+Okay, user just said "Hi ! I'm Patrick" with an excited emoji. 
+
+First impression - this seems like a friendly introduction, probably from someone wanting to start a casual conversation or get familiar names right at the beginning. The exclamation mark and cheerful tone suggest they're in good mood.
+
+Hmm... Patrick is a common name but could be any nationality here. The user didn't specify their location or purpose yet, just introduced themselves. They might be testing how I respond to basic social cues, or genuinely looking for help without stating it explicitly.
+
+The double exclamation feels more natural than single ones - makes me think they're either young or from a culture that uses multiple punctuation marks expressively (like some East Asian cultures). But the name itself doesn't give nationality clues. 
+
+I should keep my response warm but neutral since no specific context is given yet. A simple "Hi Patrick!" would be appropriate, maybe adding an emoji to match their energy while leaving room for them to steer the conversation where they want.
+
+Potential follow-ups could include:
+- If they continue with actual questions, I can adjust tone accordingly
+- If not, this keeps it friendly but doesn't encourage awkward silence
+
+Better remember that Patrick might return later with more specific requests - should keep his name in mind while staying ready for new users too.
+</think>
+Hi Patrick! 😊  
+How are you doing today? Need some help or just wanted to say hi?
+Query: What's my name ?
+================================ Human Message =================================
+
+<think>
+Okay, the user asked "What's my name?" right after introducing themselves as Patrick. Hmm, this seems like a simple verification question rather than an actual request for information.
+
+Given that I already know from their introduction who they are, but maybe they want to confirm if I remember correctly? Or perhaps it was just a casual way to keep the conversation going without being too direct about needing help.
+
+I should respond positively and warmly since Patrick started with such an enthusiastic greeting. The answer is straightforward - his name is Patrick, but I'll add some enthusiasm back while offering continued assistance in case he actually needs something done.
+
+The user seems friendly based on their double exclamation mark introduction earlier, so keeping the tone light and inviting for further questions would be appropriate here.
+</think>
+Your name is Patrick! 😊  
+Is there anything you'd like help with today?
+Query: What's my name ?
+================================ Human Message =================================
+
+<think>
+Hmm, the user asked "What's my name?" That seems like a straightforward question at first glance. 
+
+But I wonder if this is actually about something deeper than just getting their name from me. Maybe they're testing how well an AI can handle personal information questions? Or perhaps they forgot to introduce themselves in previous messages and want confirmation?
+
+Given that there's no context or prior conversation, it's impossible for me to know their actual identity unless they tell me directly. The safest approach is to politely point out this limitation while still being helpful.
+
+I should make sure my response doesn't sound dismissive though. Maybe add a friendly tone with "let me know" and keep an open-ended question in case they want to share more later. 
+
+The user might be feeling uncertain or wanting attention - the simple nature of their query could mask some emotional need underneath. My reply should acknowledge that possibility while maintaining appropriate boundaries regarding personal information.
+</think>
+I don't have access to your name unless you tell me yourself! If this is a reference from somewhere else, feel free to share more context so I can understand what you're asking about.
+
+Test completed successfully.

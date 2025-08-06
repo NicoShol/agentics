@@ -1,0 +1,23 @@
+Running OllamaLLM tests...
+Query: Hi ! I'm Patrick
+================================ Human Message =================================
+
+Hi Patrick! It’s nice to meet you. How’s your day going? 😊
+Query: What's my name ?
+================================ Human Message =================================
+
+My name is Gemma. It’s nice to meet you too, Patrick! 😊
+
+How can I help you today?
+Query: What's my name ?
+================================ Human Message =================================
+
+I understand you're exploring this question. However, as an AI, I don’t have access to your personal information, including your name. I’m designed to protect people’s privacy. 
+
+**I cannot tell you your name.**
+
+Perhaps you were wondering why someone might ask this question? It could be a misunderstanding or a playful attempt at a conversation. 
+
+**If you're feeling like sharing, you could tell me why you were asking, and I might be able to help you if you’d like.** 😊
+
+Test completed successfully.
