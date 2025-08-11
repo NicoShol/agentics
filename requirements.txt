@@ -3,3 +3,4 @@ langgraph>=0.2.28
 langchain_ollama
 # CMAKE_ARGS="-DLLAMA_METAL=on" FORCE_CMAKE=1 pip install -U llama-cpp-python --no-cache-dir
 duckduckgo-search 
+beautifulsoup4
