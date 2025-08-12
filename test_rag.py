@@ -54,10 +54,11 @@ def test_rag():
     # Indexing chunks
     embedding = OllamaEmbeddings(model=EMBEDDING_MODEL)
     vector_store = InMemoryVectorStore(embedding=embedding)
-    out = vector_store.add_documents(documents=all_splits)
+    vector_store.add_documents(documents=all_splits)
 
     # Getting prompt
     prompt = hub.pull("rlm/rag-prompt")
+    breakpoint()
 
     # Initializing the LLM
     llm = OllamaLLM(model=LLM_MODEL)
