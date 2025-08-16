@@ -40,6 +40,6 @@ class DocumentLoader:
 
 def split_text(text: str) -> list[Document]:
     """Split text into smaller chunks."""
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     splits = text_splitter.split_text(text)
     return [Document(page_content=split) for split in splits]

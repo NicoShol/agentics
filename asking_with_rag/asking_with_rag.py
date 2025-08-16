@@ -12,7 +12,7 @@ from langchain_core.vectorstores import VectorStore, InMemoryVectorStore
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 from langgraph.graph import StateGraph, START
 
-from _constants import ConstantsEmbedding, ConstantsLLM
+from constants._constants import ConstantsEmbedding, ConstantsLLM
 from document_loaders import DocumentLoader, split_text
 
 
@@ -32,33 +32,33 @@ class VectorStoreInitializer:
         return vector_store
 
 
-class LLMGraph:
-    def __init__(self, llm_model, vector_store: VectorStore, prompt):
-        self.llm_model = llm_model
-        self.vector_store = vector_store
-        self.prompt = prompt
+# class LLMGraph:
+#     def __init__(self, llm_model, vector_store: VectorStore, prompt):
+#         self.llm_model = llm_model
+#         self.vector_store = vector_store
+#         self.prompt = prompt
 
-    def retrieve(self, state: State) -> dict:
-        retrieved_docs = self.vector_store.similarity_search(state["question"])
-        return {"context": retrieved_docs}
+#     def retrieve(self, state: State) -> dict:
+#         retrieved_docs = self.vector_store.similarity_search(state["question"])
+#         return {"context": retrieved_docs}
 
-    def generate(self, state: State) -> dict:
-        # NB: prompt comes from 'hu', so need to check what is its type
-        docs_content = "\n\n".join(doc.page_content for doc in state["context"])
-        messages = self.prompt.invoke(
-            {"question": state["question"], "context": docs_content}
-        )
-        response = self.llm_model.invoke(messages)
-        return {"answer": response}
+#     def generate(self, state: State) -> dict:
+#         # NB: prompt comes from 'hu', so need to check what is its type
+#         docs_content = "\n\n".join(doc.page_content for doc in state["context"])
+#         messages = self.prompt.invoke(
+#             {"question": state["question"], "context": docs_content}
+#         )
+#         response = self.llm_model.invoke(messages)
+#         return {"answer": response}
 
-    def compile(self):
-        """Compile the graph with the defined nodes and edges."""
-        graph_builder = StateGraph(State)
-        graph_builder.add_node("retrieve", self.retrieve)
-        graph_builder.add_node("generate", self.generate)
-        graph_builder.add_edge(START, "retrieve")
-        graph_builder.add_edge("retrieve", "generate")
-        return graph_builder.compile()
+#     def compile(self):
+#         """Compile the graph with the defined nodes and edges."""
+#         graph_builder = StateGraph(State)
+#         graph_builder.add_node("retrieve", self.retrieve)
+#         graph_builder.add_node("generate", self.generate)
+#         graph_builder.add_edge(START, "retrieve")
+#         graph_builder.add_edge("retrieve", "generate")
+#         return graph_builder.compile()
 
 
 class AskingWithRAG:
@@ -91,7 +91,7 @@ class AskingWithRAG:
 
     def run(self) -> str:
         """Run the RAG system to get an answer to the question."""
-        context = self.vector_store.similarity_search(self.question)
+        context = self.vector_store.similarity_search(self.question, k=10)
         prompt = (
             f"You are a helpful assistant. You have to answer in {self.language} and not another language. "
             f"{self.customize_prompt_based_on_response_size()}\n"
@@ -111,16 +111,16 @@ class AskingWithRAG:
             return response
 
 
-class AskingWithRAGGraph:
-    def __init__(self, question: str, llm_graph: LLMGraph):
-        self.question = question
-        self.llm_graph = llm_graph
+# class AskingWithRAGGraph:
+#     def __init__(self, question: str, llm_graph: LLMGraph):
+#         self.question = question
+#         self.llm_graph = llm_graph
 
-    def run(self):
-        """Run the RAG system to get an answer to the question."""
-        initial_state = {"question": self.question, "context": [], "answer": ""}
-        response = self.llm_graph.compile().invoke(initial_state)
-        return response["answer"]
+#     def run(self):
+#         """Run the RAG system to get an answer to the question."""
+#         initial_state = {"question": self.question, "context": [], "answer": ""}
+#         response = self.llm_graph.compile().invoke(initial_state)
+#         return response["answer"]
 
 
 def main(
@@ -149,8 +149,8 @@ def main(
 
     # Ask a question using RAG
     print(f"Asking question: {question}")
-    # llm = OllamaLLM(model=ConstantsLLM.LIGHT)
-    model = ConstantsLLM.GPTOSS
+    model = ConstantsLLM.ADVANCED
+    # model = ConstantsLLM.LIGHT
     llm = OllamaLLM(model=model, streaming=streaming)
     print(f"Using LLM model: {model}")
     rag_system = AskingWithRAG(
@@ -162,14 +162,14 @@ def main(
 
     print("Response:\n", response)
 
-    # Write the response to a PDF file (assume markdown as input)
-    with open("response.pdf", "w") as f:
+    # Write the response to a Markdown file
+    with open("response.md", "w") as f:
         f.write(response)
 
 
 if __name__ == "__main__":
-    QUESTION = "Parle moi de la distinction entre promesse unilatéral de vente, promesse synallagmatique de vente & la promesse d'achat"  # Adjust the question as needed
+    QUESTION = "Trouve-moi tout les articles du code civil concernant les promesses de vente, ordonné par importance"  # Adjust the question as needed
     LANGUAGE = "French"  # or "English", etc.
-    RESPONSE_SIZE = "long"  # or "medium", "long"
+    RESPONSE_SIZE = "medium"  # or "medium", "long"
     STREAMING = True  # Set to True to enable streaming
     main(QUESTION, LANGUAGE, RESPONSE_SIZE, STREAMING)
